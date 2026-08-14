@@ -1,7 +1,7 @@
 {
   "name": "interactive-card",
-  "private": true,
-  "version": "0.0.0",
+  "version": "2.0.0",
+  "description": "Interactive Energy Dashboard custom card and panel for Home Assistant",
   "type": "module",
   "scripts": {
     "dev": "vite",

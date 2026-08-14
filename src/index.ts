@@ -13,7 +13,9 @@ import "./components/scenes/solar/solar-energy-scene";
 import "./components/scenes/battery/battery-storage-scene";
 import "./components/scenes/appliance/appliance-intelligence-scene";
 import "./components/scenes/pet/pet-energy-scene";
+import "./components/panel/interactive-energy-panel";
 import { publishCardRegistry } from "./config/card-registry";
 
 publishCardRegistry();
 console.log("Interactive Card Loaded");
+

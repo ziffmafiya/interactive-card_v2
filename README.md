@@ -118,9 +118,38 @@ The current build registers the following Lovelace card types:
 | `custom:energy-ev-charging-scene` | Display the built-in EV charging scene |
 | `custom:energy-solar-scene` | Display the built-in solar energy scene |
 | `custom:energy-battery-scene` | Display the built-in battery storage scene |
+| `custom:interactive-energy-panel` | **Unified Full Dashboard Panel** combining Overview, Trends, Circuits, Scenes, Automations & Settings |
 
+
+## Home Assistant Sidebar Panel (`panel_custom`)
+
+To integrate the entire dashboard as a dedicated page in your **Home Assistant sidebar menu**, add the following to your `configuration.yaml`:
+
+```yaml
+panel_custom:
+  - name: interactive_energy_panel
+    sidebar_title: Energy
+    sidebar_icon: mdi:solar-power-variant
+    url_path: energy-interactive
+    module_url: /local/interactive-card/interactive-card.js
+    config:
+      title: Energy Interactive
+      default_tab: overview # options: overview, analytics, circuits, scenes, automations, settings
+      theme: glass          # options: glass, native, solid
+```
+
+After updating `configuration.yaml`, restart Home Assistant. A new "Energy" item will appear directly in your sidebar!
 
 ## Installation
+
+### Via HACS (Recommended)
+
+1. Open **HACS** in Home Assistant.
+2. Click the three dots in the top right corner and select **Custom repositories**.
+3. Enter `https://github.com/ziffmafiya/interactive-card_v2` in the repository URL field.
+4. Select **Dashboard** (or **Lovelace**) as the category.
+5. Click **Add**, then find **Interactive Energy Dashboard** and click **Download**.
+6. Refresh your browser.
 
 ### Manual Installation
 

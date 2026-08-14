@@ -647,8 +647,17 @@ export class InteractiveEnergyPanel extends LitElement {
   }
 }
 
-customElements.define("interactive-energy-panel", InteractiveEnergyPanel);
-// Also define alias for Lovelace custom card
-if (!customElements.get("interactive-card-panel")) {
-  customElements.define("interactive-card-panel", class extends InteractiveEnergyPanel {});
+const elementAliases = [
+  "interactive-energy-panel",
+  "ha-panel-interactive-energy-panel",
+  "ha-panel-interactive_energy_panel",
+  "interactive-card-panel",
+  "ha-panel-interactive-card-panel",
+];
+
+for (const alias of elementAliases) {
+  if (!customElements.get(alias)) {
+    customElements.define(alias, class extends InteractiveEnergyPanel {});
+  }
 }
+

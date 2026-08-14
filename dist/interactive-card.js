@@ -574,11 +574,11 @@ var se = globalThis, ce = se.ShadowRoot && (se.ShadyCSS === void 0 || se.ShadyCS
 	let t = "";
 	for (let n of e.cssRules) t += n.cssText;
 	return fe(t);
-})(e) : e, { is: he, defineProperty: ge, getOwnPropertyDescriptor: _e, getOwnPropertyNames: ve, getOwnPropertySymbols: ye, getPrototypeOf: be } = Object, xe = globalThis, Se = xe.trustedTypes, Ce = Se ? Se.emptyScript : "", we = xe.reactiveElementPolyfillSupport, g = (e, t) => e, Te = {
+})(e) : e, { is: he, defineProperty: ge, getOwnPropertyDescriptor: _e, getOwnPropertyNames: ve, getOwnPropertySymbols: ye, getPrototypeOf: be } = Object, g = globalThis, xe = g.trustedTypes, Se = xe ? xe.emptyScript : "", Ce = g.reactiveElementPolyfillSupport, _ = (e, t) => e, we = {
 	toAttribute(e, t) {
 		switch (t) {
 			case Boolean:
-				e = e ? Ce : null;
+				e = e ? Se : null;
 				break;
 			case Object:
 			case Array: e = e == null ? e : JSON.stringify(e);
@@ -603,23 +603,23 @@ var se = globalThis, ce = se.ShadowRoot && (se.ShadyCSS === void 0 || se.ShadyCS
 		}
 		return n;
 	}
-}, Ee = (e, t) => !he(e, t), De = {
+}, Te = (e, t) => !he(e, t), Ee = {
 	attribute: !0,
 	type: String,
-	converter: Te,
+	converter: we,
 	reflect: !1,
 	useDefault: !1,
-	hasChanged: Ee
+	hasChanged: Te
 };
-Symbol.metadata ??= Symbol("metadata"), xe.litPropertyMetadata ??= /* @__PURE__ */ new WeakMap();
-var _ = class extends HTMLElement {
+Symbol.metadata ??= Symbol("metadata"), g.litPropertyMetadata ??= /* @__PURE__ */ new WeakMap();
+var v = class extends HTMLElement {
 	static addInitializer(e) {
 		this._$Ei(), (this.l ??= []).push(e);
 	}
 	static get observedAttributes() {
 		return this.finalize(), this._$Eh && [...this._$Eh.keys()];
 	}
-	static createProperty(e, t = De) {
+	static createProperty(e, t = Ee) {
 		if (t.state && (t.attribute = !1), this._$Ei(), this.prototype.hasOwnProperty(e) && ((t = Object.create(t)).wrapped = !0), this.elementProperties.set(e, t), !t.noAccessor) {
 			let n = Symbol(), r = this.getPropertyDescriptor(e, n, t);
 			r !== void 0 && ge(this.prototype, e, r);
@@ -645,16 +645,16 @@ var _ = class extends HTMLElement {
 		};
 	}
 	static getPropertyOptions(e) {
-		return this.elementProperties.get(e) ?? De;
+		return this.elementProperties.get(e) ?? Ee;
 	}
 	static _$Ei() {
-		if (this.hasOwnProperty(g("elementProperties"))) return;
+		if (this.hasOwnProperty(_("elementProperties"))) return;
 		let e = be(this);
 		e.finalize(), e.l !== void 0 && (this.l = [...e.l]), this.elementProperties = new Map(e.elementProperties);
 	}
 	static finalize() {
-		if (this.hasOwnProperty(g("finalized"))) return;
-		if (this.finalized = !0, this._$Ei(), this.hasOwnProperty(g("properties"))) {
+		if (this.hasOwnProperty(_("finalized"))) return;
+		if (this.finalized = !0, this._$Ei(), this.hasOwnProperty(_("properties"))) {
 			let e = this.properties, t = [...ve(e), ...ye(e)];
 			for (let n of t) this.createProperty(n, e[n]);
 		}
@@ -716,14 +716,14 @@ var _ = class extends HTMLElement {
 	_$ET(e, t) {
 		let n = this.constructor.elementProperties.get(e), r = this.constructor._$Eu(e, n);
 		if (r !== void 0 && !0 === n.reflect) {
-			let i = (n.converter?.toAttribute === void 0 ? Te : n.converter).toAttribute(t, n.type);
+			let i = (n.converter?.toAttribute === void 0 ? we : n.converter).toAttribute(t, n.type);
 			this._$Em = e, i == null ? this.removeAttribute(r) : this.setAttribute(r, i), this._$Em = null;
 		}
 	}
 	_$AK(e, t) {
 		let n = this.constructor, r = n._$Eh.get(e);
 		if (r !== void 0 && this._$Em !== r) {
-			let e = n.getPropertyOptions(r), i = typeof e.converter == "function" ? { fromAttribute: e.converter } : e.converter?.fromAttribute === void 0 ? Te : e.converter;
+			let e = n.getPropertyOptions(r), i = typeof e.converter == "function" ? { fromAttribute: e.converter } : e.converter?.fromAttribute === void 0 ? we : e.converter;
 			this._$Em = r;
 			let a = i.fromAttribute(t, e.type);
 			this[r] = a ?? this._$Ej?.get(r) ?? a, this._$Em = null;
@@ -732,7 +732,7 @@ var _ = class extends HTMLElement {
 	requestUpdate(e, t, n, r = !1, i) {
 		if (e !== void 0) {
 			let a = this.constructor;
-			if (!1 === r && (i = this[e]), n ??= a.getPropertyOptions(e), !((n.hasChanged ?? Ee)(i, t) || n.useDefault && n.reflect && i === this._$Ej?.get(e) && !this.hasAttribute(a._$Eu(e, n)))) return;
+			if (!1 === r && (i = this[e]), n ??= a.getPropertyOptions(e), !((n.hasChanged ?? Te)(i, t) || n.useDefault && n.reflect && i === this._$Ej?.get(e) && !this.hasAttribute(a._$Eu(e, n)))) return;
 			this.C(e, t, n);
 		}
 		!1 === this.isUpdatePending && (this._$ES = this._$EP());
@@ -796,10 +796,10 @@ var _ = class extends HTMLElement {
 	updated(e) {}
 	firstUpdated(e) {}
 };
-_.elementStyles = [], _.shadowRootOptions = { mode: "open" }, _[g("elementProperties")] = /* @__PURE__ */ new Map(), _[g("finalized")] = /* @__PURE__ */ new Map(), we?.({ ReactiveElement: _ }), (xe.reactiveElementVersions ??= []).push("2.1.2");
+v.elementStyles = [], v.shadowRootOptions = { mode: "open" }, v[_("elementProperties")] = /* @__PURE__ */ new Map(), v[_("finalized")] = /* @__PURE__ */ new Map(), Ce?.({ ReactiveElement: v }), (g.reactiveElementVersions ??= []).push("2.1.2");
 //#endregion
 //#region node_modules/lit-html/lit-html.js
-var Oe = globalThis, ke = (e) => e, v = Oe.trustedTypes, Ae = v ? v.createPolicy("lit-html", { createHTML: (e) => e }) : void 0, je = "$lit$", y = `lit$${Math.random().toFixed(9).slice(2)}$`, Me = "?" + y, Ne = `<${Me}>`, b = document, x = () => b.createComment(""), S = (e) => e === null || typeof e != "object" && typeof e != "function", Pe = Array.isArray, Fe = (e) => Pe(e) || typeof e?.[Symbol.iterator] == "function", Ie = "[ 	\n\f\r]", C = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, Le = /-->/g, Re = />/g, w = RegExp(`>|${Ie}(?:([^\\s"'>=/]+)(${Ie}*=${Ie}*(?:[^ \t\n\f\r"'\`<>=]|("|')|))|$)`, "g"), ze = /'/g, Be = /"/g, Ve = /^(?:script|style|textarea|title)$/i, He = (e) => (t, ...n) => ({
+var De = globalThis, Oe = (e) => e, ke = De.trustedTypes, Ae = ke ? ke.createPolicy("lit-html", { createHTML: (e) => e }) : void 0, je = "$lit$", y = `lit$${Math.random().toFixed(9).slice(2)}$`, Me = "?" + y, Ne = `<${Me}>`, b = document, x = () => b.createComment(""), S = (e) => e === null || typeof e != "object" && typeof e != "function", Pe = Array.isArray, Fe = (e) => Pe(e) || typeof e?.[Symbol.iterator] == "function", Ie = "[ 	\n\f\r]", C = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, Le = /-->/g, Re = />/g, w = RegExp(`>|${Ie}(?:([^\\s"'>=/]+)(${Ie}*=${Ie}*(?:[^ \t\n\f\r"'\`<>=]|("|')|))|$)`, "g"), ze = /'/g, Be = /"/g, Ve = /^(?:script|style|textarea|title)$/i, He = (e) => (t, ...n) => ({
 	_$litType$: e,
 	strings: t,
 	values: n
@@ -835,7 +835,7 @@ var Ge = (e, t) => {
 						index: a,
 						name: r[2],
 						strings: n,
-						ctor: r[1] === "." ? Xe : r[1] === "?" ? Ze : r[1] === "@" ? Qe : Ye
+						ctor: r[1] === "." ? Ye : r[1] === "?" ? Xe : r[1] === "@" ? Ze : j
 					}), i.removeAttribute(e);
 				} else e.startsWith(y) && (c.push({
 					type: 6,
@@ -844,7 +844,7 @@ var Ge = (e, t) => {
 				if (Ve.test(i.tagName)) {
 					let e = i.textContent.split(y), t = e.length - 1;
 					if (t > 0) {
-						i.textContent = v ? v.emptyScript : "";
+						i.textContent = ke ? ke.emptyScript : "";
 						for (let n = 0; n < t; n++) i.append(e[n], x()), k.nextNode(), c.push({
 							type: 2,
 							index: ++a
@@ -893,7 +893,7 @@ var qe = class {
 		for (; s !== void 0;) {
 			if (a === s.index) {
 				let t;
-				s.type === 2 ? t = new Je(i, i.nextSibling, this, e) : s.type === 1 ? t = new s.ctor(i, s.name, s.strings, this, e) : s.type === 6 && (t = new $e(i, this, e)), this._$AV.push(t), s = n[++o];
+				s.type === 2 ? t = new Je(i, i.nextSibling, this, e) : s.type === 1 ? t = new s.ctor(i, s.name, s.strings, this, e) : s.type === 6 && (t = new Qe(i, this, e)), this._$AV.push(t), s = n[++o];
 			}
 			a !== s?.index && (i = k.nextNode(), a++);
 		}
@@ -952,14 +952,14 @@ var qe = class {
 	}
 	_$AR(e = this._$AA.nextSibling, t) {
 		for (this._$AP?.(!1, !0, t); e !== this._$AB;) {
-			let t = ke(e).nextSibling;
-			ke(e).remove(), e = t;
+			let t = Oe(e).nextSibling;
+			Oe(e).remove(), e = t;
 		}
 	}
 	setConnected(e) {
 		this._$AM === void 0 && (this._$Cv = e, this._$AP?.(e));
 	}
-}, Ye = class {
+}, j = class {
 	get tagName() {
 		return this.element.tagName;
 	}
@@ -981,21 +981,21 @@ var qe = class {
 	j(e) {
 		e === O ? this.element.removeAttribute(this.name) : this.element.setAttribute(this.name, e ?? "");
 	}
-}, Xe = class extends Ye {
+}, Ye = class extends j {
 	constructor() {
 		super(...arguments), this.type = 3;
 	}
 	j(e) {
 		this.element[this.name] = e === O ? void 0 : e;
 	}
-}, Ze = class extends Ye {
+}, Xe = class extends j {
 	constructor() {
 		super(...arguments), this.type = 4;
 	}
 	j(e) {
 		this.element.toggleAttribute(this.name, !!e && e !== O);
 	}
-}, Qe = class extends Ye {
+}, Ze = class extends j {
 	constructor(e, t, n, r, i) {
 		super(e, t, n, r, i), this.type = 5;
 	}
@@ -1007,7 +1007,7 @@ var qe = class {
 	handleEvent(e) {
 		typeof this._$AH == "function" ? this._$AH.call(this.options?.host ?? this.element, e) : this._$AH.handleEvent(e);
 	}
-}, $e = class {
+}, Qe = class {
 	constructor(e, t, n) {
 		this.element = e, this.type = 6, this._$AN = void 0, this._$AM = t, this.options = n;
 	}
@@ -1017,16 +1017,16 @@ var qe = class {
 	_$AI(e) {
 		A(this, e);
 	}
-}, et = Oe.litHtmlPolyfillSupport;
-et?.(Ke, Je), (Oe.litHtmlVersions ??= []).push("3.3.3");
-var tt = (e, t, n) => {
+}, $e = De.litHtmlPolyfillSupport;
+$e?.(Ke, Je), (De.litHtmlVersions ??= []).push("3.3.3");
+var et = (e, t, n) => {
 	let r = n?.renderBefore ?? t, i = r._$litPart$;
 	if (i === void 0) {
 		let e = n?.renderBefore ?? null;
 		r._$litPart$ = i = new Je(t.insertBefore(x(), e), e, void 0, n ?? {});
 	}
 	return i._$AI(e), i;
-}, nt = globalThis, j = class extends _ {
+}, tt = globalThis, M = class extends v {
 	constructor() {
 		super(...arguments), this.renderOptions = { host: this }, this._$Do = void 0;
 	}
@@ -1036,7 +1036,7 @@ var tt = (e, t, n) => {
 	}
 	update(e) {
 		let t = this.render();
-		this.hasUpdated || (this.renderOptions.isConnected = this.isConnected), super.update(e), this._$Do = tt(t, this.renderRoot, this.renderOptions);
+		this.hasUpdated || (this.renderOptions.isConnected = this.isConnected), super.update(e), this._$Do = et(t, this.renderRoot, this.renderOptions);
 	}
 	connectedCallback() {
 		super.connectedCallback(), this._$Do?.setConnected(!0);
@@ -1048,12 +1048,12 @@ var tt = (e, t, n) => {
 		return D;
 	}
 };
-j._$litElement$ = !0, j.finalized = !0, nt.litElementHydrateSupport?.({ LitElement: j });
-var rt = nt.litElementPolyfillSupport;
-rt?.({ LitElement: j }), (nt.litElementVersions ??= []).push("4.2.2");
+M._$litElement$ = !0, M.finalized = !0, tt.litElementHydrateSupport?.({ LitElement: M });
+var nt = tt.litElementPolyfillSupport;
+nt?.({ LitElement: M }), (tt.litElementVersions ??= []).push("4.2.2");
 //#endregion
 //#region src/styles/kpi.ts
-var it = h`
+var rt = h`
   .content {
     display: grid;
     width: 100%;
@@ -1133,7 +1133,7 @@ var it = h`
     --icon-badge-size: var(--kpi-icon-size, 42px);
     --icon-badge-icon-size: var(--kpi-icon-symbol-size, 21px);
   }
-`, M = h`
+`, N = h`
   .content,
   .form,
   .body {
@@ -1305,7 +1305,7 @@ h`
 `;
 //#endregion
 //#region src/helpers/line-chart.ts
-function at(e, t) {
+function it(e, t) {
 	if (!e.length) return [];
 	let n = Math.min(...e), r = Math.max(...e) - n || 1, i = e.length > 1 ? t.width / (e.length - 1) : t.width;
 	return e.map((e, a) => ({
@@ -1313,32 +1313,32 @@ function at(e, t) {
 		y: t.height - (e - n) / r * t.height
 	}));
 }
-function ot(e, t) {
-	return at(e, t).map((e, t) => `${t === 0 ? "M" : "L"} ${e.x.toFixed(2)} ${e.y.toFixed(2)}`).join(" ");
+function at(e, t) {
+	return it(e, t).map((e, t) => `${t === 0 ? "M" : "L"} ${e.x.toFixed(2)} ${e.y.toFixed(2)}`).join(" ");
 }
-function st(e, t) {
-	return at(e, t).map((e) => `${e.x.toFixed(2)},${e.y.toFixed(2)}`).join(" ");
+function ot(e, t) {
+	return it(e, t).map((e) => `${e.x.toFixed(2)},${e.y.toFixed(2)}`).join(" ");
 }
 //#endregion
 //#region src/helpers/entity.ts
-function ct(e, t) {
+function st(e, t) {
 	return e.states[t];
 }
-function lt(e, t) {
-	let n = ct(e, t);
+function ct(e, t) {
+	let n = st(e, t);
 	return n ? n.state : "";
 }
-function ut(e, t) {
-	let n = Number(lt(e, t));
+function lt(e, t) {
+	let n = Number(ct(e, t));
 	return isNaN(n) ? 0 : n;
 }
-function dt(e, t, n) {
-	let r = ct(e, t);
+function ut(e, t, n) {
+	let r = st(e, t);
 	if (r) return r.attributes[n];
 }
 //#endregion
 //#region src/helpers/entity-state-parser.ts
-function N(e, t, n = e, r = "") {
+function P(e, t, n = e, r = "") {
 	return {
 		entityId: e,
 		status: t,
@@ -1347,14 +1347,14 @@ function N(e, t, n = e, r = "") {
 		name: n
 	};
 }
-function P(e, t) {
-	if (!e || !t) return N(t, "missing");
-	let n = ct(e, t);
-	if (!n) return N(t, "missing");
+function F(e, t) {
+	if (!e || !t) return P(t, "missing");
+	let n = st(e, t);
+	if (!n) return P(t, "missing");
 	let r = n.attributes.friendly_name ?? t, i = n.attributes.unit_of_measurement ?? "", a = n.state.trim();
-	if (a === "unknown") return N(t, "unknown", r, i);
-	if (a === "unavailable") return N(t, "unavailable", r, i);
-	if (a === "") return N(t, "invalid", r, i);
+	if (a === "unknown") return P(t, "unknown", r, i);
+	if (a === "unavailable") return P(t, "unavailable", r, i);
+	if (a === "") return P(t, "invalid", r, i);
 	let o = Number(a);
 	return Number.isFinite(o) ? {
 		entityId: t,
@@ -1362,23 +1362,23 @@ function P(e, t) {
 		value: o,
 		unit: i,
 		name: r
-	} : N(t, "invalid", r, i);
+	} : P(t, "invalid", r, i);
 }
 //#endregion
 //#region src/helpers/number-formatter.ts
-function ft(e) {
+function dt(e) {
 	return Number.isFinite(e) ? Math.min(20, Math.max(0, Math.trunc(e))) : 2;
 }
-function pt(e, t = {}) {
+function ft(e, t = {}) {
 	if (!Number.isFinite(e)) return "--";
-	let n = ft(t.decimals ?? 2), r = e.toFixed(n);
+	let n = dt(t.decimals ?? 2), r = e.toFixed(n);
 	if (t.trimTrailingZeros && r.includes(".") && (r = r.replace(/\.?0+$/, "")), !t.useGrouping) return r;
 	let [i, a] = r.split("."), o = i.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	return a === void 0 ? o : `${o}.${a}`;
 }
 //#endregion
 //#region src/helpers/unit-converter.ts
-function mt(e, t) {
+function pt(e, t) {
 	let n = t.trim(), r = n.replace(/\s+/g, "").toLowerCase();
 	return r === "mw" ? {
 		value: e * 1e6,
@@ -1410,7 +1410,7 @@ function mt(e, t) {
 		family: "other"
 	};
 }
-function ht(e, t, n = {}) {
+function mt(e, t, n = {}) {
 	if (!n.autoScale) return {
 		value: e,
 		unit: t,
@@ -1458,14 +1458,14 @@ function ht(e, t, n = {}) {
 }
 //#endregion
 //#region src/helpers/metric-formatter.ts
-function gt(e, t, n) {
+function ht(e, t, n) {
 	if (t !== "kW" && t !== "kWh" || Math.abs(e) >= 1e3) return e;
 	let r = Number(e.toFixed(n));
 	if (Math.abs(r) < 1e3) return e;
 	let i = 1e3 - 10 ** -n;
 	return Math.sign(e || 1) * i;
 }
-function F(e, t = {}) {
+function I(e, t = {}) {
 	let n = t.unit ?? e.unit;
 	if (e.status !== "valid" || e.value === null) return {
 		value: "--",
@@ -1473,9 +1473,9 @@ function F(e, t = {}) {
 		status: e.status,
 		rawValue: e.value
 	};
-	let r = ht(e.value, n, { autoScale: t.autoScale }), i = t.decimals ?? 2;
+	let r = mt(e.value, n, { autoScale: t.autoScale }), i = t.decimals ?? 2;
 	return {
-		value: pt(gt(r.value, r.unit, i), {
+		value: ft(ht(r.value, r.unit, i), {
 			decimals: i,
 			trimTrailingZeros: t.trimTrailingZeros,
 			useGrouping: t.useGrouping
@@ -1487,14 +1487,14 @@ function F(e, t = {}) {
 }
 //#endregion
 //#region src/helpers/value-formatter.ts
-function _t(e, t, n = {}) {
+function gt(e, t, n = {}) {
 	if (e == null || isNaN(e)) return {
 		value: "--",
 		unit: t
 	};
 	let r = n.autoScale ?? !0, i = e, a = t;
 	r && t === "g" && Math.abs(e) >= 1e3 ? (i = e / 1e3, a = "kg") : r && t === "ms" && Math.abs(e) >= 1e3 && (i = e / 1e3, a = "s");
-	let o = F({
+	let o = I({
 		entityId: "",
 		status: "valid",
 		value: i,
@@ -1513,7 +1513,7 @@ function _t(e, t, n = {}) {
 }
 //#endregion
 //#region src/helpers/kpi-card-resolver.ts
-function vt(e) {
+function _t(e) {
 	switch (e) {
 		case "unknown": return "Entity state is unknown";
 		case "unavailable": return "Entity is unavailable";
@@ -1522,21 +1522,21 @@ function vt(e) {
 		default: return "";
 	}
 }
-function yt(e) {
+function vt(e) {
 	let t = (e.id ?? "").toLowerCase(), n = (e.title ?? "").toLowerCase();
 	return e.category === "cost" || t === "usage" || t.includes("today") || t.includes("daily") || t.includes("consumption") || n.includes("today") || n.includes("daily") || n.includes("consumption") || n.includes("cost");
 }
-function bt(e, t) {
+function yt(e, t) {
 	if (!e || !t?.entity) return null;
-	let n = P(e, t.entity);
+	let n = F(e, t.entity);
 	if (n.status !== "valid" || n.value === null) return {
 		value: "--",
 		unit: n.unit || t.unit || "",
 		status: n.status,
 		rawValue: null,
-		statusMessage: vt(n.status)
+		statusMessage: _t(n.status)
 	};
-	let r = _t(n.value, n.unit || t.unit || "", {
+	let r = gt(n.value, n.unit || t.unit || "", {
 		autoScale: t.autoScale ?? !0,
 		decimals: t.decimals ?? t.precision ?? 2
 	});
@@ -1547,15 +1547,15 @@ function bt(e, t) {
 		rawValue: n.value
 	};
 }
-function xt(e, t) {
+function bt(e, t) {
 	let n = t.subtitle ?? t.trend ?? "", r = {
 		text: n,
 		color: "var(--secondary-text-color)"
 	};
 	if (!n && !t.trendMode || t.trendMode === "none" || !e || !t?.entity) return r;
-	let i = ct(e, t.entity);
+	let i = st(e, t.entity);
 	if (!i) return r;
-	let a = yt(t), o = Number(i.state), s = Number(dt(e, t.entity, "last_period"));
+	let a = vt(t), o = Number(i.state), s = Number(ut(e, t.entity, "last_period"));
 	if (!a || !s || Number.isNaN(s)) return r;
 	let c = (o - s) / s * 100, l = Math.abs(c).toFixed(1);
 	return c > 0 ? {
@@ -1566,15 +1566,15 @@ function xt(e, t) {
 		color: "var(--en-color-success)"
 	} : r;
 }
-function St(e, t) {
+function xt(e, t) {
 	if (Array.isArray(t?.history) && t.history.length) return t.history.map((e) => Number(e)).filter((e) => !Number.isNaN(e));
 	if (!e || !t?.entity) return [];
-	let n = Number(ut(e, t.entity)), r = Number(dt(e, t.entity, "last_period")), i = [];
+	let n = Number(lt(e, t.entity)), r = Number(ut(e, t.entity, "last_period")), i = [];
 	return Number.isNaN(r) || i.push(r), Number.isNaN(n) || i.push(n), i;
 }
 //#endregion
 //#region src/config/config-normalizer.ts
-function Ct(e) {
+function St(e) {
 	return {
 		autoScale: !0,
 		decimals: 2,
@@ -1582,7 +1582,7 @@ function Ct(e) {
 		history: Array.isArray(e.history) ? [...e.history] : void 0
 	};
 }
-function wt(e) {
+function Ct(e) {
 	let t = Array.isArray(e.cards) ? e.cards.map((e) => ({
 		...e,
 		history: Array.isArray(e.history) ? [...e.history] : void 0
@@ -1595,7 +1595,7 @@ function wt(e) {
 }
 //#endregion
 //#region src/components/common/metric-value.ts
-var Tt = class extends j {
+var wt = class extends M {
 	constructor(...e) {
 		super(...e), this.value = "", this.unit = "", this.status = "valid";
 	}
@@ -1649,10 +1649,10 @@ var Tt = class extends j {
     `;
 	}
 };
-customElements.define("ic-metric-value", Tt);
+customElements.define("ic-metric-value", wt);
 //#endregion
 //#region src/components/common/icon-badge.ts
-var Et = class extends j {
+var Tt = class extends M {
 	constructor(...e) {
 		super(...e), this.icon = "", this.tone = "primary", this.size = 0, this.iconSize = 0;
 	}
@@ -1784,10 +1784,10 @@ var Et = class extends j {
     `;
 	}
 };
-customElements.define("ic-icon-badge", Et);
+customElements.define("ic-icon-badge", Tt);
 //#endregion
 //#region src/components/common/trend-indicator.ts
-var Dt = class extends j {
+var Et = class extends M {
 	constructor(...e) {
 		super(...e), this.text = "", this.direction = "neutral", this.status = "neutral", this.showIcon = !1;
 	}
@@ -1846,10 +1846,10 @@ var Dt = class extends j {
     `;
 	}
 };
-customElements.define("ic-trend-indicator", Dt);
+customElements.define("ic-trend-indicator", Et);
 //#endregion
 //#region src/styles/glass.ts
-var Ot = h`
+var Dt = h`
   :host {
     display: block;
     width: 100%;
@@ -1911,9 +1911,9 @@ var Ot = h`
     width: 100%;
     height: 100%;
   }
-`, kt = class extends j {
+`, Ot = class extends M {
 	static {
-		this.styles = [Ot, h`
+		this.styles = [Dt, h`
       :host {
         display: block;
         width: 100%;
@@ -1934,18 +1934,18 @@ var Ot = h`
     `;
 	}
 };
-customElements.define("ic-card-container", kt);
+customElements.define("ic-card-container", Ot);
 //#endregion
 //#region src/helpers/text-formatter.ts
-var I = {
+var L = {
 	compactMenu: 28,
 	pickerItem: 38,
 	readonlyField: 46
 };
-function L(e, t = "pickerItem") {
-	return R(e, { maxLength: I[t] });
+function R(e, t = "pickerItem") {
+	return z(e, { maxLength: L[t] });
 }
-function R(e, t = {}) {
+function z(e, t = {}) {
 	let n = Array.from(e), r = Math.max(9, t.maxLength ?? 42);
 	if (n.length <= r) return e;
 	let i = t.tailLength ?? Math.round(r * .32), a = Math.max(4, Math.min(i, r - 7)), o = r - a - 3;
@@ -1953,7 +1953,7 @@ function R(e, t = {}) {
 }
 //#endregion
 //#region src/components/common/select-item.ts
-var At = class extends j {
+var kt = class extends M {
 	constructor(...e) {
 		super(...e), this.selected = !1, this.indicator = "none", this.hideIndicator = !1, this.disabled = !1, this.variant = "default", this.displayLabel = "", this.rawLabel = "", this.secondaryLabel = "", this.rawSecondaryLabel = "", this.tone = "neutral";
 	}
@@ -2150,18 +2150,18 @@ var At = class extends j {
     `;
 	}
 };
-customElements.define("ic-select-item", At);
+customElements.define("ic-select-item", kt);
 //#endregion
 //#region src/components/common/picker-item.ts
-var jt = class extends At {
+var At = class extends kt {
 	constructor(...e) {
 		super(...e), this.variant = "default";
 	}
 };
-customElements.define("ic-picker-item", jt);
+customElements.define("ic-picker-item", At);
 //#endregion
 //#region src/design-system/scrollbar.ts
-var Mt = h`
+var jt = h`
   * {
     scrollbar-color:
       var(--en-scrollbar-thumb, auto)
@@ -2190,7 +2190,7 @@ var Mt = h`
   *::-webkit-scrollbar-thumb:hover {
     background: var(--en-scrollbar-thumb-hover, revert);
   }
-`, Nt = class extends j {
+`, Mt = class extends M {
 	constructor(...e) {
 		super(...e), this.variant = "default";
 	}
@@ -2201,7 +2201,7 @@ var Mt = h`
 		} };
 	}
 	static {
-		this.styles = [Mt, h`
+		this.styles = [jt, h`
     :host {
       display:block;
       min-width:0;
@@ -2238,10 +2238,10 @@ var Mt = h`
 		return T`<slot></slot>`;
 	}
 };
-customElements.define("ic-scroll-area", Nt);
+customElements.define("ic-scroll-area", Mt);
 //#endregion
 //#region src/components/common/field.ts
-var Pt = class extends j {
+var Nt = class extends M {
 	constructor(...e) {
 		super(...e), this.label = "", this.value = "", this.rawValue = "", this.placeholder = "", this.type = "text", this.variant = "editable", this.disabled = !1, this.invalid = !1;
 	}
@@ -2316,10 +2316,10 @@ var Pt = class extends j {
 		return T`${this.label ? T`<span class="label">${this.label}</span>` : null}${e}`;
 	}
 };
-customElements.define("ic-field", Pt);
+customElements.define("ic-field", Nt);
 //#endregion
 //#region src/components/common/inline-picker-panel.ts
-var Ft = class extends j {
+var Pt = class extends M {
 	constructor(...e) {
 		super(...e), this.open = !1, this.maxHeight = 260;
 	}
@@ -2383,10 +2383,10 @@ var Ft = class extends j {
     </div>`;
 	}
 };
-customElements.define("ic-inline-picker-panel", Ft);
+customElements.define("ic-inline-picker-panel", Pt);
 //#endregion
 //#region src/components/common/search-field.ts
-var It = class extends j {
+var Ft = class extends M {
 	constructor(...e) {
 		super(...e), this.value = "", this.placeholder = "Search...", this.variant = "editable";
 	}
@@ -2413,10 +2413,10 @@ var It = class extends j {
 		}}><ha-icon slot="leading" icon="mdi:magnify"></ha-icon></ic-field>`;
 	}
 };
-customElements.define("ic-search-field", It);
+customElements.define("ic-search-field", Ft);
 //#endregion
 //#region src/components/entity-selector.ts
-var Lt = class extends j {
+var It = class extends M {
 	constructor(...e) {
 		super(...e), this.value = "", this.filter = {}, this.limit = 1e3, this.placeholder = "Search entity...", this.preferredDeviceClasses = [], this.preferredUnits = [], this.variant = "default", this.search = "";
 	}
@@ -2627,7 +2627,7 @@ var Lt = class extends j {
 				i,
 				a
 			].filter(Boolean).join(" · "), c = [
-				L(e, "pickerItem"),
+				R(e, "pickerItem"),
 				o,
 				i,
 				a
@@ -2636,7 +2636,7 @@ var Lt = class extends j {
         <ic-picker-item
           .selected=${e === this.value}
           .indicator=${e === this.value ? "check" : "none"}
-          .displayLabel=${R(String(n || e), { maxLength: I.pickerItem })}
+          .displayLabel=${z(String(n || e), { maxLength: L.pickerItem })}
           .rawLabel=${String(n || e)}
           .secondaryLabel=${c}
           .rawSecondaryLabel=${s}
@@ -2665,7 +2665,7 @@ var Lt = class extends j {
       ` : T`
       <div class="current">
         <ic-field label="Current Entity" variant="readonly"
-          .value=${this.value ? L(this.value, "readonlyField") : "Not configured"}
+          .value=${this.value ? R(this.value, "readonlyField") : "Not configured"}
           .rawValue=${this.value || "Not configured"}>
         </ic-field>
       </div>
@@ -2689,9 +2689,9 @@ var Lt = class extends j {
                 <ic-picker-item
                   .selected=${e === this.value}
                   .indicator=${e === this.value ? "check" : "none"}
-                  .displayLabel=${R(String(n || e), { maxLength: I.pickerItem })}
+                  .displayLabel=${z(String(n || e), { maxLength: L.pickerItem })}
                   .rawLabel=${String(n || e)}
-                  .secondaryLabel=${L(e, "pickerItem")}
+                  .secondaryLabel=${R(e, "pickerItem")}
                   .rawSecondaryLabel=${o}
                   @click=${() => this.selectEntity(e)}
                 ></ic-picker-item>
@@ -2701,8 +2701,8 @@ var Lt = class extends j {
     `;
 	}
 };
-customElements.define("ic-entity-selector", Lt);
-var z = new class {
+customElements.define("ic-entity-selector", It);
+var Lt = new class {
 	constructor() {
 		this.stack = [], this.returnFocus = /* @__PURE__ */ new WeakMap();
 	}
@@ -2719,7 +2719,7 @@ var z = new class {
 	isTop(e) {
 		return this.stack.at(-1) === e;
 	}
-}(), Rt = class extends j {
+}(), Rt = class extends M {
 	constructor(...e) {
 		super(...e), this.open = !1, this.title = "", this.closeOnBackdrop = !0, this.closeOnEscape = !0;
 	}
@@ -2741,7 +2741,7 @@ var z = new class {
 		};
 	}
 	static {
-		this.styles = [Mt, h`
+		this.styles = [jt, h`
     :host { display:contents; }
     dialog {
       z-index:10000;
@@ -2883,18 +2883,18 @@ var z = new class {
 	updated(e) {
 		if (!e.has("open")) return;
 		let t = this.renderRoot.querySelector("dialog");
-		t && (this.open && !t.open ? (window.clearTimeout(this.closeTimer), z.register(t), t.showModal(), requestAnimationFrame(() => t.classList.add("visible"))) : !this.open && t.open && (t.classList.remove("visible"), window.clearTimeout(this.closeTimer), this.closeTimer = window.setTimeout(() => {
-			t.open && t.close(), z.unregister(t);
+		t && (this.open && !t.open ? (window.clearTimeout(this.closeTimer), Lt.register(t), t.showModal(), requestAnimationFrame(() => t.classList.add("visible"))) : !this.open && t.open && (t.classList.remove("visible"), window.clearTimeout(this.closeTimer), this.closeTimer = window.setTimeout(() => {
+			t.open && t.close(), Lt.unregister(t);
 		}, o.normal)));
 	}
 	disconnectedCallback() {
 		window.clearTimeout(this.closeTimer);
 		let e = this.renderRoot.querySelector("dialog");
-		e && z.unregister(e), super.disconnectedCallback();
+		e && Lt.unregister(e), super.disconnectedCallback();
 	}
 	requestClose(e) {
 		let t = this.renderRoot.querySelector("dialog");
-		!t || !z.isTop(t) || this.dispatchEvent(new CustomEvent("dialog-close", {
+		!t || !Lt.isTop(t) || this.dispatchEvent(new CustomEvent("dialog-close", {
 			detail: { reason: e },
 			bubbles: !0,
 			composed: !0
@@ -2927,7 +2927,7 @@ var z = new class {
 customElements.define("ic-dialog", Rt);
 //#endregion
 //#region src/components/common/app-dialog.ts
-var zt = class extends j {
+var zt = class extends M {
 	constructor(...e) {
 		super(...e), this.open = !1, this.title = "", this.closeOnBackdrop = !0, this.closeOnEscape = !0;
 	}
@@ -2986,7 +2986,7 @@ var zt = class extends j {
 customElements.define("ic-app-dialog", zt);
 //#endregion
 //#region src/components/common/button.ts
-var Bt = class extends j {
+var Bt = class extends M {
 	constructor(...e) {
 		super(...e), this.variant = "secondary", this.disabled = !1, this.loading = !1;
 	}
@@ -3045,7 +3045,7 @@ var Bt = class extends j {
 customElements.define("ic-button", Bt);
 //#endregion
 //#region src/components/common/dialog-footer.ts
-var Vt = class extends j {
+var Vt = class extends M {
 	static {
 		this.styles = h`
     :host {
@@ -3125,7 +3125,7 @@ var Vt = class extends j {
 customElements.define("ic-dialog-footer", Vt);
 //#endregion
 //#region src/components/common/confirm-dialog.ts
-var Ht = class extends j {
+var Ht = class extends M {
 	constructor(...e) {
 		super(...e), this.open = !1, this.title = "Confirm", this.message = "", this.confirmLabel = "Confirm";
 	}
@@ -3182,7 +3182,7 @@ var Ht = class extends j {
 customElements.define("ic-confirm-dialog", Ht);
 //#endregion
 //#region src/components/common/segmented-control.ts
-var Ut = class extends j {
+var Ut = class extends M {
 	constructor(...e) {
 		super(...e), this.options = [], this.value = "", this.label = "Options", this.widthMode = "fit", this.size = "default";
 	}
@@ -3298,7 +3298,7 @@ var Ut = class extends j {
 customElements.define("ic-segmented-control", Ut);
 //#endregion
 //#region src/components/common/card-settings-dialog.ts
-var Wt = class extends j {
+var Wt = class extends M {
 	constructor(...e) {
 		super(...e), this.open = !1, this.title = "Card Settings", this.entity = "", this.error = "", this.subtitle = "", this.trendMode = "none", this.cardId = "", this.canDelete = !1, this.deleteConfirmOpen = !1, this.entitySelectorOpen = !1, this.entityFilter = { domains: [
 			"sensor",
@@ -3407,7 +3407,7 @@ var Wt = class extends j {
     .selector-panel {
       min-width: 0;
     }
-  `, M];
+  `, N];
 	}
 	close() {
 		this.deleteConfirmOpen = !1, this.entitySelectorOpen = !1, this.dispatchEvent(new CustomEvent("settings-close", {
@@ -3460,7 +3460,7 @@ var Wt = class extends j {
             <ic-field
               label="Current Entity"
               variant="selectable"
-              .value=${this.entity ? L(this.entity, "readonlyField") : "Select an entity"}
+              .value=${this.entity ? R(this.entity, "readonlyField") : "Select an entity"}
               .rawValue=${this.entity || "Select an entity"}
               aria-expanded=${this.entitySelectorOpen}
               @field-activate=${() => {
@@ -3545,7 +3545,7 @@ var Wt = class extends j {
 customElements.define("ic-card-settings-dialog", Wt);
 //#endregion
 //#region src/components/energy-kpi-card.ts
-var Gt = class extends j {
+var Gt = class extends M {
 	constructor(...e) {
 		super(...e), this.config = {}, this.validation = { status: "valid" }, this.previewMode = !1, this._chartOpen = !1, this._settingsOpen = !1, this._settingsError = "";
 	}
@@ -3561,20 +3561,20 @@ var Gt = class extends j {
 	}
 	setConfig(e) {
 		if (!e || !e.entity) throw Error("Please define an entity");
-		this.config = Ct(e);
+		this.config = St(e);
 	}
 	set hass(e) {
 		this._hass = e, this.requestUpdate();
 	}
 	getEnergyValue() {
-		return bt(this._hass, this.config);
+		return yt(this._hass, this.config);
 	}
 	getTrend() {
-		return xt(this._hass, this.config);
+		return bt(this._hass, this.config);
 	}
 	static {
 		this.styles = [
-			it,
+			rt,
 			h`
     :host {
       display: block;
@@ -3662,7 +3662,7 @@ var Gt = class extends j {
     }
 
   `,
-			M
+			N
 		];
 	}
 	getIconCategory() {
@@ -3674,7 +3674,7 @@ var Gt = class extends j {
 		return e === "power" ? "primary" : e === "cost" ? "accent" : "success";
 	}
 	getSparklineData() {
-		return St(this._hass, this.config);
+		return xt(this._hass, this.config);
 	}
 	_toggleChart(e) {
 		e && e.stopPropagation(), this._chartOpen = !this._chartOpen, this.requestUpdate();
@@ -3690,11 +3690,11 @@ var Gt = class extends j {
           <div class="chart-body">
             ${e.length ? T`
               <svg width="320" height="220" viewBox="0 0 320 220" preserveAspectRatio="none">
-                <path d="${ot(e, {
+                <path d="${at(e, {
 			width: 320,
 			height: 180
 		})}" fill="none" stroke="var(--primary-text-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                <polyline points="${st(e, {
+                <polyline points="${ot(e, {
 			width: 320,
 			height: 180
 		})}" fill="none" stroke="var(--primary-text-color)" stroke-width="6" stroke-linecap="round"></polyline>
@@ -3759,7 +3759,7 @@ var Gt = class extends j {
 	renderSingle(e = this.config) {
 		let t = this.config;
 		this.config = e;
-		let n = this.getTrend(), r = this.getEnergyValue(), i = n.color === "#FF3B30" ? "negative" : n.color === "var(--en-color-success)" ? "positive" : "neutral", a = this.getSparklineData(), o = this.getIconTone(), s = ot(a, {
+		let n = this.getTrend(), r = this.getEnergyValue(), i = n.color === "#FF3B30" ? "negative" : n.color === "var(--en-color-success)" ? "positive" : "neutral", a = this.getSparklineData(), o = this.getIconTone(), s = at(a, {
 			width: 120,
 			height: 28
 		}), c = T`
@@ -3853,7 +3853,7 @@ customElements.define("energy-kpi-card", Gt), window.customCards = [...window.cu
 }], console.log("Energy KPI Card Loaded v2");
 //#endregion
 //#region src/components/common/menu-item.ts
-var Kt = class extends At {
+var Kt = class extends kt {
 	constructor(...e) {
 		super(...e), this.variant = "compact";
 	}
@@ -3861,7 +3861,7 @@ var Kt = class extends At {
 customElements.define("ic-menu-item", Kt);
 //#endregion
 //#region src/components/kpi-item.ts
-var qt = class extends j {
+var qt = class extends M {
 	constructor(...e) {
 		super(...e), this.selected = !1;
 	}
@@ -3909,7 +3909,7 @@ var qt = class extends j {
 customElements.define("kpi-item", qt);
 //#endregion
 //#region src/components/common/action-menu.ts
-var Jt = class extends j {
+var Jt = class extends M {
 	static {
 		this.styles = h`
     :host { display:block; width:100%; min-width:0; max-height:inherit; overflow:hidden; }
@@ -3951,7 +3951,7 @@ var Jt = class extends j {
 customElements.define("ic-action-menu", Jt);
 //#endregion
 //#region src/components/kpi-picker.ts
-var Yt = class extends j {
+var Yt = class extends M {
 	constructor(...e) {
 		super(...e), this.items = [], this.customItems = [], this.selectedItems = [];
 	}
@@ -4137,7 +4137,7 @@ var Yt = class extends j {
 customElements.define("kpi-picker", Yt);
 //#endregion
 //#region src/components/common/section-header.ts
-var Xt = class extends j {
+var Xt = class extends M {
 	constructor(...e) {
 		super(...e), this.title = "", this.subtitle = "", this.showActions = !0, this.level = "section";
 	}
@@ -4223,7 +4223,7 @@ var Xt = class extends j {
 customElements.define("ic-section-header", Xt);
 //#endregion
 //#region src/components/common/action-button.ts
-var Zt = class extends j {
+var Zt = class extends M {
 	constructor(...e) {
 		super(...e), this.icon = "+", this.label = "Action", this.disabled = !1;
 	}
@@ -4323,7 +4323,7 @@ var Qt = new class {
 	close(e) {
 		this.active === e && (this.active = void 0);
 	}
-}(), $t = class extends j {
+}(), $t = class extends M {
 	constructor(...e) {
 		super(...e), this.open = !1, this.align = "end", this.placement = "bottom-end", this.offset = 8, this.closeOnOutsideClick = !0, this.outsidePointer = (e) => {
 			this.closeOnOutsideClick && !e.composedPath().includes(this) && this.requestClose();
@@ -4348,7 +4348,7 @@ var Qt = new class {
 		};
 	}
 	static {
-		this.styles = [Mt, h`
+		this.styles = [jt, h`
     :host { display:inline-flex; }
     .popover {
       position:fixed;
@@ -4508,7 +4508,7 @@ function sn(e, t = []) {
 }
 //#endregion
 //#region src/components/common/icon-input.ts
-var cn = class extends j {
+var cn = class extends M {
 	constructor(...e) {
 		super(...e), this.value = "", this.label = "Icon";
 	}
@@ -4551,7 +4551,7 @@ var cn = class extends j {
 customElements.define("ic-icon-input", cn);
 //#endregion
 //#region src/components/kpi/kpi-card-builder-dialog.ts
-var ln = class extends j {
+var ln = class extends M {
 	constructor(...e) {
 		super(...e), this.open = !1, this.mode = "create", this.draft = {}, this.existingIds = [], this.deleteConfirmOpen = !1, this.formDraft = {}, this.validation = {
 			valid: !0,
@@ -4719,7 +4719,7 @@ var ln = class extends j {
         height: 126px;
       }
     }
-  `, M];
+  `, N];
 	}
 	willUpdate(e) {
 		(e.has("open") && this.open || e.has("draft")) && (this.formDraft = { ...this.draft }, this.validation = {
@@ -4792,7 +4792,7 @@ var ln = class extends j {
 
             <div>
               <ic-field label="Entity" variant="selectable"
-                .value=${e.entity ? L(e.entity, "readonlyField") : "Select an entity"}
+                .value=${e.entity ? R(e.entity, "readonlyField") : "Select an entity"}
                 .rawValue=${e.entity || "Select an entity"}
                 aria-expanded=${this.showEntitySelector}
                 @field-activate=${() => {
@@ -5482,18 +5482,18 @@ function Hn(e) {
 function q(e, t) {
 	return Array.isArray(e) && Array.isArray(t) ? e.length === t.length && e.every((e, n) => e === t[n]) : e === t;
 }
-function Un(e) {
+function J(e) {
 	return K(e.title)?.trim().toLowerCase();
 }
-function Wn(e, t) {
+function Un(e, t) {
 	let n = K(e.id), r = K(t.id);
 	if (n || r) return !!(n && n === r);
 	let i = K(e.entity), a = K(t.entity);
 	if (i && a) return i === a;
-	let o = Un(e), s = Un(t);
+	let o = J(e), s = J(t);
 	return !!(o && o === s);
 }
-function Gn(e) {
+function Wn(e) {
 	return {
 		id: e.id,
 		title: e.title,
@@ -5510,65 +5510,65 @@ function Gn(e) {
 		icon_color: e.icon_color
 	};
 }
-function Kn(e, t, n) {
+function Gn(e, t, n) {
 	if (!n) return;
 	let r = [
 		t?.id,
 		K(e.id),
-		Un(e)
+		J(e)
 	].filter((e) => !!e);
 	for (let e of r) {
 		let t = K(n[e]?.[0]?.entityId);
 		if (t) return t;
 	}
 }
-function qn(e, t, n, r) {
-	let i = Gn(t), a = { id: t.id };
+function Kn(e, t, n, r) {
+	let i = Wn(t), a = { id: t.id };
 	for (let [o, s] of Object.entries(e)) if (!(o === "id" || zn.has(o) || !Bn(s)) && !(n && Bn(n[o]) && (o !== "entity" || Vn(n) || q(s, n[o])))) {
 		if (o === "entity") {
-			let n = Kn(e, t, r);
+			let n = Gn(e, t, r);
 			if (q(s, i.entity) || q(s, n)) continue;
 		} else if (q(s, i[o])) continue;
 		a[o] = Hn(s);
 	}
 	return Object.keys(a).length > 1 ? a : void 0;
 }
-function Jn(e, t) {
-	let n = {}, r = K(e.id) ? "id" : K(e.entity) ? "entity" : Un(e) ? "title" : void 0;
+function qn(e, t) {
+	let n = {}, r = K(e.id) ? "id" : K(e.entity) ? "entity" : J(e) ? "title" : void 0;
 	r && (n[r] = e[r]);
 	for (let [i, a] of Object.entries(e)) i !== r && (zn.has(i) || !Bn(a) || t && Bn(t[i]) && (i !== "entity" || Vn(t) || q(a, t[i])) || (n[i] = Hn(a)));
 	let i = +!!r;
 	return Object.keys(n).length > i || !t ? n : void 0;
 }
-function Yn(e) {
+function Jn(e) {
 	let t = [];
 	for (let n of e.cards) {
-		let r = K(n.id) ? e.templates.find((e) => e.id === n.id) : void 0, i = e.yamlCards?.find((e) => Wn(e, n)), a = r ? qn(n, r, i, e.discovery) : Jn(n, i);
+		let r = K(n.id) ? e.templates.find((e) => e.id === n.id) : void 0, i = e.yamlCards?.find((e) => Un(e, n)), a = r ? Kn(n, r, i, e.discovery) : qn(n, i);
 		a && t.push(a);
 	}
 	return t;
 }
 //#endregion
 //#region src/config/kpi-config-coordinator.ts
-var Xn = class extends Error {
+var Yn = class extends Error {
 	constructor(e, t, n) {
 		super(t, { cause: n }), this.name = "KpiConfigCoordinatorError", this.stage = e;
 	}
 };
-function Zn(e) {
+function Xn(e) {
 	return Array.isArray(e) ? [...e] : e && typeof e == "object" ? { ...e } : e;
 }
-function Qn(e) {
+function Zn(e) {
 	let t = {}, n = /* @__PURE__ */ new Set([
 		"identity",
 		"metadata",
 		"validation",
 		"discovery"
 	]);
-	for (let [r, i] of Object.entries(e)) n.has(r) || (t[r] = Zn(i));
+	for (let [r, i] of Object.entries(e)) n.has(r) || (t[r] = Xn(i));
 	return t;
 }
-var $n = class {
+var Qn = class {
 	constructor(e, t) {
 		this.saveQueue = Promise.resolve(), this.repository = e, this.templates = t;
 	}
@@ -5578,7 +5578,7 @@ var $n = class {
 		try {
 			t = await this.repository.load();
 		} catch (e) {
-			throw new Xn("load", "Unable to load KPI configuration", e);
+			throw new Yn("load", "Unable to load KPI configuration", e);
 		}
 		return Rn({
 			templates: this.templates,
@@ -5588,29 +5588,29 @@ var $n = class {
 		});
 	}
 	saveUserCards(e) {
-		let t = e.map(Qn), n = this.saveQueue.then(async () => {
+		let t = e.map(Zn), n = this.saveQueue.then(async () => {
 			try {
 				await this.repository.save(t);
 			} catch (e) {
-				throw new Xn("save", "Unable to save KPI configuration", e);
+				throw new Yn("save", "Unable to save KPI configuration", e);
 			}
 		});
 		return this.saveQueue = n.catch(() => void 0), n;
 	}
-}, er = "interactive-card:kpi-config:v1";
-function tr(e) {
+}, $n = "interactive-card:kpi-config:v1";
+function er(e) {
 	return e.map((e) => ({
 		...e,
 		history: Array.isArray(e.history) ? [...e.history] : void 0
 	}));
 }
-function nr(e) {
+function tr(e) {
 	if (!e || typeof e != "object") return !1;
 	let t = e;
 	return !!(typeof t.id == "string" && t.id.trim() || typeof t.entity == "string" && t.entity.trim() || typeof t.title == "string" && t.title.trim());
 }
-var rr = class {
-	constructor(e = er) {
+var nr = class {
+	constructor(e = $n) {
 		this.storageKey = e;
 	}
 	async load() {
@@ -5618,7 +5618,7 @@ var rr = class {
 		if (!e) return [];
 		try {
 			let t = JSON.parse(e);
-			return t.version !== 1 || !Array.isArray(t.cards) ? [] : tr(t.cards.filter(nr));
+			return t.version !== 1 || !Array.isArray(t.cards) ? [] : er(t.cards.filter(tr));
 		} catch {
 			return [];
 		}
@@ -5626,11 +5626,11 @@ var rr = class {
 	async save(e) {
 		let t = {
 			version: 1,
-			cards: tr(e)
+			cards: er(e)
 		};
 		globalThis.localStorage?.setItem(this.storageKey, JSON.stringify(t));
 	}
-}, ir = h`
+}, rr = h`
   .energy-card-grid {
     display: grid;
     width: 100%;
@@ -5657,19 +5657,19 @@ var rr = class {
       gap: var(--energy-grid-mobile-gap, 10px);
     }
   }
-`, J = un, Y = new Tn(J);
-function ar(e) {
+`, Y = un, X = new Tn(Y);
+function ir(e) {
 	return e.type === "custom" || e.id?.startsWith("custom-") === !0;
 }
-var or = class extends j {
+var ar = class extends M {
 	constructor(...e) {
-		super(...e), this._repository = new rr(), this._coordinator = new $n(this._repository, J), this._yamlCards = [], this._discovery = {}, this._resolutionVersion = 0, this._hasRepositoryResolution = !1, this.config = {
+		super(...e), this._repository = new nr(), this._coordinator = new Qn(this._repository, Y), this._yamlCards = [], this._discovery = {}, this._resolutionVersion = 0, this._hasRepositoryResolution = !1, this.config = {
 			title: "Energy Overview",
 			cards: []
 		}, this.headerMenuOpen = !1, this._builderOpen = !1, this._builderMode = "create", this._builderDraft = {}, this._dragIndex = null, this._entityLocks = {};
 	}
 	setConfig(e) {
-		this.config = wt(e), this._yamlCards = this.config.cards.map((e) => ({
+		this.config = Ct(e), this._yamlCards = this.config.cards.map((e) => ({
 			...e,
 			history: Array.isArray(e.history) ? [...e.history] : void 0
 		})), this._hass && this._startConfigResolution(!0);
@@ -5686,13 +5686,13 @@ var or = class extends j {
 		this._hass = e, this._startConfigResolution(!this._hasRepositoryResolution), this.requestUpdate();
 	}
 	_createDiscoveryResults() {
-		return this._hass ? gn(this._hass, vn(J)) : {};
+		return this._hass ? gn(this._hass, vn(Y)) : {};
 	}
 	_startConfigResolution(e) {
 		let t = this._createDiscoveryResults();
 		if (this._discovery = t, e) {
 			let e = Rn({
-				templates: J,
+				templates: Y,
 				yamlCards: this._yamlCards,
 				discovery: t
 			});
@@ -5715,7 +5715,7 @@ var or = class extends j {
 		});
 	}
 	static {
-		this.styles = [ir, h`
+		this.styles = [rr, h`
 
 
 
@@ -5801,13 +5801,13 @@ var or = class extends j {
 	}
 	_commitConfigChange(e = this.config.cards) {
 		this._resolutionVersion++;
-		let t = Yn({
+		let t = Jn({
 			cards: e,
-			templates: J,
+			templates: Y,
 			yamlCards: this._yamlCards,
 			discovery: this._discovery
 		}), n = Rn({
-			templates: J,
+			templates: Y,
 			repositoryCards: t,
 			yamlCards: this._yamlCards,
 			discovery: this._discovery
@@ -5828,7 +5828,7 @@ var or = class extends j {
 	_toggleKpi(e) {
 		let t = e.detail;
 		if (!t || !t.id) return;
-		let n = Y.toggleTemplate(this.config.cards, t).cards;
+		let n = X.toggleTemplate(this.config.cards, t).cards;
 		this._commitConfigChange(n);
 	}
 	_openCreateBuilder() {
@@ -5845,10 +5845,10 @@ var or = class extends j {
 		e.stopPropagation();
 		let { config: t, mode: n } = e.detail;
 		if (n === "edit" && this._editingCardKey) {
-			let e = Y.update(this.config.cards, this._editingCardKey, t);
+			let e = X.update(this.config.cards, this._editingCardKey, t);
 			e.changed && this._commitConfigChange(e.cards);
 		} else {
-			let e = this.config.cards.filter(ar).length, n = Y.create(this.config.cards, {
+			let e = this.config.cards.filter(ir).length, n = X.create(this.config.cards, {
 				...t,
 				type: "custom",
 				name: t.title,
@@ -5861,13 +5861,13 @@ var or = class extends j {
 	_toggleCustomKpi(e) {
 		let t = e.detail, n = t ? H(t) : void 0;
 		if (!t || !n) return;
-		let r = t.enabled ? Y.disable(this.config.cards, n) : Y.enable(this.config.cards, n);
+		let r = t.enabled ? X.disable(this.config.cards, n) : X.enable(this.config.cards, n);
 		r.changed && this._commitConfigChange(r.cards);
 	}
 	_removeKpi(e) {
 		let t = e.detail;
 		if (!t || !t.id) return;
-		let n = Y.disable(this.config.cards, t.id);
+		let n = X.disable(this.config.cards, t.id);
 		n.changed && this._commitConfigChange(n.cards);
 	}
 	_deleteCustomKpi(e) {
@@ -5875,8 +5875,8 @@ var or = class extends j {
 		let t = e.detail?.id;
 		if (!t) return;
 		let n = this.config.cards.find((e) => H(e) === t);
-		if (!n || !ar(n)) return;
-		let r = Y.remove(this.config.cards, t);
+		if (!n || !ir(n)) return;
+		let r = X.remove(this.config.cards, t);
 		r.changed && this._commitConfigChange(r.cards), this._closeBuilder();
 	}
 	_handleSetCardEntity(e) {
@@ -5895,7 +5895,7 @@ var or = class extends j {
 			};
 			return;
 		}
-		let i = Y.updateEntity(this.config.cards, n, r, this._entityLocks);
+		let i = X.updateEntity(this.config.cards, n, r, this._entityLocks);
 		if (i.locked) {
 			t.result = {
 				success: !1,
@@ -5908,13 +5908,13 @@ var or = class extends j {
 	_handleUpdateCardEntity(e) {
 		let t = e.detail || {}, n = t.id, r = t.entity;
 		if (!n || !r) return;
-		let i = Y.updateEntity(this.config.cards, n, r, this._entityLocks);
+		let i = X.updateEntity(this.config.cards, n, r, this._entityLocks);
 		i.locked && console.warn(`[KPI] YAML entity present for ${n}; refusing to overwrite with ${r}`), i.changed && this._commitConfigChange(i.cards);
 	}
 	_handleUpdateCardSettings(e) {
 		let t = e.detail || {}, n = t.key;
 		if (!n) return;
-		let r = Y.update(this.config.cards, n, {
+		let r = X.update(this.config.cards, n, {
 			subtitle: t.subtitle ?? "",
 			trend: void 0,
 			trendMode: t.trendMode ?? "none"
@@ -5927,7 +5927,7 @@ var or = class extends j {
 		if (!t) return;
 		let n = this.config.cards.find((e) => H(e) === t);
 		if (!n) return;
-		let r = ar(n) ? Y.remove(this.config.cards, t) : Y.disable(this.config.cards, t);
+		let r = ir(n) ? X.remove(this.config.cards, t) : X.disable(this.config.cards, t);
 		r.changed && this._commitConfigChange(r.cards);
 	}
 	_onDragStart(e, t) {
@@ -5945,7 +5945,7 @@ var or = class extends j {
 		n && (r = parseInt(n, 10));
 		let i = t;
 		if (r == null || isNaN(r) || r === i) return;
-		let a = Y.reorder(this.config.cards, r, i);
+		let a = X.reorder(this.config.cards, r, i);
 		a.changed && this._commitConfigChange(a.cards), this._dragIndex = null;
 	}
 	_onDragEnd(e) {
@@ -5977,7 +5977,7 @@ var or = class extends j {
           ></ic-action-button>
           <kpi-picker
             .items=${dn}
-            .customItems=${this.config.cards.filter(ar)}
+            .customItems=${this.config.cards.filter(ir)}
             .selectedItems=${this.config.cards.filter((e) => !!e.enabled).map((e) => e.id ?? e.entity)}
             .hass=${this._hass}
             @toggle-kpi=${this._toggleKpi}
@@ -6059,59 +6059,59 @@ var or = class extends j {
 		return { columns: "full" };
 	}
 };
-customElements.define("energy-kpi-section", or);
+customElements.define("energy-kpi-section", ar);
 //#endregion
 //#region src/config/trend-config-normalizer.ts
-var sr = [
+var or = [
 	"1H",
 	"24H",
 	"7D",
 	"30D"
-], cr = [
+], sr = [
 	"power",
 	"energy",
 	"cost",
 	"circuit"
-], lr = [
+], cr = [
 	"smooth",
 	"raw",
 	"step"
-], ur = ["smooth", "high_precision"], dr = [
+], lr = ["smooth", "high_precision"], ur = [
 	"line",
 	"area",
 	"bar"
 ];
-function fr(e, t, n) {
+function dr(e, t, n) {
 	let r = e.entity?.trim();
 	if (r) return {
 		entity: r,
 		order: typeof e.order == "number" && Number.isFinite(e.order) ? Math.max(0, Math.trunc(e.order)) : t,
-		chartMode: dr.includes(e.chartMode) ? e.chartMode : n,
+		chartMode: ur.includes(e.chartMode) ? e.chartMode : n,
 		name: e.name?.trim() || void 0,
 		color: e.color?.trim() || void 0,
-		category: cr.includes(e.category) ? e.category : void 0,
+		category: sr.includes(e.category) ? e.category : void 0,
 		unit: e.unit?.trim() || void 0,
 		enabled: e.enabled !== !1,
 		decimals: typeof e.decimals == "number" && Number.isFinite(e.decimals) ? Math.max(0, Math.min(4, Math.trunc(e.decimals))) : 2,
 		autoScale: e.autoScale !== !1,
 		lineStyle: e.lineStyle === "dashed" ? "dashed" : "solid",
-		renderMode: ur.includes(e.renderMode) ? e.renderMode : void 0,
+		renderMode: lr.includes(e.renderMode) ? e.renderMode : void 0,
 		axis: e.axis === "left" || e.axis === "right" ? e.axis : "auto"
 	};
 }
-function X(e) {
-	let t = dr.includes(e.chartMode) ? e.chartMode : "line", n = sr.includes(e.timeframe) ? e.timeframe : "24H", r = cr.includes(e.category) ? e.category : "energy", i = typeof e.height == "number" && Number.isFinite(e.height) ? Math.max(240, e.height) : 350;
+function Z(e) {
+	let t = ur.includes(e.chartMode) ? e.chartMode : "line", n = or.includes(e.timeframe) ? e.timeframe : "24H", r = sr.includes(e.category) ? e.category : "energy", i = typeof e.height == "number" && Number.isFinite(e.height) ? Math.max(240, e.height) : 350;
 	return {
 		id: e.id?.trim() || void 0,
 		type: e.type,
 		title: e.title?.trim() || "Energy Trend",
 		height: i,
-		curve: lr.includes(e.curve) ? e.curve : "smooth",
-		renderMode: ur.includes(e.renderMode) ? e.renderMode : "smooth",
+		curve: cr.includes(e.curve) ? e.curve : "smooth",
+		renderMode: lr.includes(e.renderMode) ? e.renderMode : "smooth",
 		fullWidth: e.fullWidth !== !1,
 		timeframe: n,
 		category: r,
-		entities: Array.isArray(e.entities) ? e.entities.map((e, n) => fr(e, n, t)).filter((e) => !!e).sort((e, t) => (e.order ?? 0) - (t.order ?? 0)).map((e, t) => ({
+		entities: Array.isArray(e.entities) ? e.entities.map((e, n) => dr(e, n, t)).filter((e) => !!e).sort((e, t) => (e.order ?? 0) - (t.order ?? 0)).map((e, t) => ({
 			...e,
 			order: t
 		})) : []
@@ -6119,14 +6119,14 @@ function X(e) {
 }
 //#endregion
 //#region src/config/trend-config-coordinator.ts
-var pr = class {
+var fr = class {
 	constructor(e) {
 		this.saveQueue = Promise.resolve(), this.repository = e;
 	}
 	async resolve(e, t) {
 		await this.saveQueue;
 		let n = await this.repository.load(e);
-		return X(n ? {
+		return Z(n ? {
 			...t,
 			...n,
 			id: t.id ?? n.id,
@@ -6135,31 +6135,31 @@ var pr = class {
 		} : t);
 	}
 	save(e, t) {
-		let n = X(t), r = this.saveQueue.then(() => this.repository.save(e, n));
+		let n = Z(t), r = this.saveQueue.then(() => this.repository.save(e, n));
 		return this.saveQueue = r.catch(() => void 0), r;
 	}
-}, mr = {
+}, pr = {
 	"1H": 3600 * 1e3,
 	"24H": 1440 * 60 * 1e3,
 	"7D": 10080 * 60 * 1e3,
 	"30D": 720 * 60 * 60 * 1e3
 };
-function hr(e, t = /* @__PURE__ */ new Date()) {
+function mr(e, t = /* @__PURE__ */ new Date()) {
 	return {
-		start: new Date(t.getTime() - mr[e]),
+		start: new Date(t.getTime() - pr[e]),
 		end: t
 	};
 }
-function gr(e, t, n) {
+function hr(e, t, n) {
 	return `history/period/${encodeURIComponent(t.toISOString())}?end_time=${encodeURIComponent(n.toISOString())}&filter_entity_id=${encodeURIComponent(e.join(","))}&minimal_response&no_attributes`;
 }
-async function _r(e, t, n, r = /* @__PURE__ */ new Date()) {
-	let i = [...new Set(t.map((e) => e.trim()).filter(Boolean))], a = hr(n, r);
+async function gr(e, t, n, r = /* @__PURE__ */ new Date()) {
+	let i = [...new Set(t.map((e) => e.trim()).filter(Boolean))], a = mr(n, r);
 	if (!i.length) return {
 		...a,
 		entities: {}
 	};
-	let o = await e.callApi("GET", gr(i, a.start, a.end));
+	let o = await e.callApi("GET", hr(i, a.start, a.end));
 	if (!Array.isArray(o)) throw Error("Home Assistant returned an invalid history response");
 	let s = {};
 	return i.forEach((e, t) => {
@@ -6172,15 +6172,15 @@ async function _r(e, t, n, r = /* @__PURE__ */ new Date()) {
 }
 //#endregion
 //#region src/helpers/trend-transformer.ts
-function vr(e, t) {
+function _r(e, t) {
 	return t === "other" ? `unit:${e || "unitless"}` : `${t}:${e}`;
 }
-function yr(e, t) {
+function vr(e, t) {
 	let n = [], r = t, i = "other";
 	for (let a of e) {
 		let e = Number(a.state), o = Date.parse(a.last_changed ?? a.last_updated ?? "");
 		if (!Number.isFinite(e) || !Number.isFinite(o)) continue;
-		let s = mt(e, t);
+		let s = pt(e, t);
 		r = s.unit, i = s.family, n.push({
 			timestamp: o,
 			value: s.value
@@ -6192,7 +6192,7 @@ function yr(e, t) {
 		family: i
 	};
 }
-function br(e) {
+function yr(e) {
 	let t = /* @__PURE__ */ new Map();
 	for (let n of e) {
 		let e = t.get(n.axisId) ?? [];
@@ -6218,9 +6218,9 @@ function br(e) {
 		};
 	}).sort((e, t) => e.axisGroup === t.axisGroup ? 0 : e.axisGroup === "left" ? -1 : 1);
 }
-function xr(e, t, n, r = {}) {
+function br(e, t, n, r = {}) {
 	let i = t.map((t) => {
-		let i = r[t.entity] ?? {}, a = String(e[t.entity]?.find((e) => e.attributes?.unit_of_measurement)?.attributes?.unit_of_measurement ?? ""), o = i.unit || a || t.unit || "", s = yr(e[t.entity] ?? [], o), c = vr(s.unit, s.family);
+		let i = r[t.entity] ?? {}, a = String(e[t.entity]?.find((e) => e.attributes?.unit_of_measurement)?.attributes?.unit_of_measurement ?? ""), o = i.unit || a || t.unit || "", s = vr(e[t.entity] ?? [], o), c = _r(s.unit, s.family);
 		return {
 			id: t.entity,
 			entity: t.entity,
@@ -6255,14 +6255,14 @@ function xr(e, t, n, r = {}) {
 	});
 	return {
 		series: o,
-		axes: br(o.filter((e) => e.points.length > 0))
+		axes: yr(o.filter((e) => e.points.length > 0))
 	};
 }
 //#endregion
 //#region src/components/common/glass-container.ts
-var Sr = class extends j {
+var xr = class extends M {
 	static {
-		this.styles = Ot;
+		this.styles = Dt;
 	}
 	render() {
 		return T`
@@ -6274,10 +6274,10 @@ var Sr = class extends j {
     `;
 	}
 };
-customElements.define("ic-glass-container", Sr);
+customElements.define("ic-glass-container", xr);
 //#endregion
 //#region src/helpers/trend-chart-formatters.ts
-var Cr = [
+var Sr = [
 	"var(--en-color-series-1)",
 	"var(--en-color-series-2)",
 	"var(--en-color-series-3)",
@@ -6285,11 +6285,11 @@ var Cr = [
 	"var(--en-color-series-5)",
 	"var(--en-color-series-6)"
 ];
-function Z(e, t) {
-	return Cr[t % Cr.length];
+function Cr(e, t) {
+	return Sr[t % Sr.length];
 }
 function wr(e, t, n = {}) {
-	let r = _t(e / t.displayScale, t.displayUnit, {
+	let r = gt(e / t.displayScale, t.displayUnit, {
 		autoScale: !1,
 		decimals: n.decimals ?? t.precision,
 		useGrouping: !0
@@ -6533,7 +6533,7 @@ var Yr = class {
 		let o = e.filter((e) => e.visible && !n.has(e.id)).map((e) => ({
 			...e,
 			points: this.samplingCache.sample(e.points, r, e.category, e.renderMode ?? i)
-		})), s = br(o), c = s.slice(0, 2), l = new Set(c.map((e) => e.id)), u = o.filter((e) => l.has(e.axisId)).map((e) => ({
+		})), s = yr(o), c = s.slice(0, 2), l = new Set(c.map((e) => e.id)), u = o.filter((e) => l.has(e.axisId)).map((e) => ({
 			...e,
 			axisGroup: c.find((t) => t.id === e.axisId)?.axisGroup
 		}));
@@ -6571,7 +6571,7 @@ function Qr(e, t, n) {
 }
 //#endregion
 //#region src/components/trend/trend-axis-labels.ts
-var $r = class extends j {
+var $r = class extends M {
 	constructor(...e) {
 		super(...e), this.labels = [];
 	}
@@ -6625,7 +6625,7 @@ var $r = class extends j {
 customElements.define("ic-trend-axis-labels", $r);
 //#endregion
 //#region src/components/trend/trend-hover-markers.ts
-var ei = class extends j {
+var ei = class extends M {
 	constructor(...e) {
 		super(...e), this.markers = [];
 	}
@@ -6730,7 +6730,7 @@ function ai(e, t, n) {
 		for (let n of ni(t)) e.bezierCurveTo(n.control1.x, n.control1.y, n.control2.x, n.control2.y, n.end.x, n.end.y);
 	}
 }
-var oi = class extends j {
+var oi = class extends M {
 	constructor(...e) {
 		super(...e), this.series = [], this.axes = [], this.curve = "smooth";
 	}
@@ -6778,7 +6778,7 @@ var oi = class extends j {
 		let a = Or(this.series), o = this.series.flatMap((e, t) => {
 			let r = this.axes.find((t) => t.id === e.axisId);
 			return !r || !e.points.length ? [] : [{
-				color: ii(i, Z(e.color, t)),
+				color: ii(i, Cr(e.color, t)),
 				chartMode: e.chartMode,
 				lineStyle: e.lineStyle,
 				points: e.points.map((e) => ({
@@ -6816,7 +6816,7 @@ var oi = class extends j {
 customElements.define("ic-trend-line-renderer", oi);
 //#endregion
 //#region src/components/trend/trend-chart.ts
-var si = class extends j {
+var si = class extends M {
 	constructor(...e) {
 		super(...e), this.series = [], this.axes = [], this.timeframe = "24H", this.status = "idle", this.errorMessage = "", this.curve = "smooth", this.renderMode = "smooth", this.hiddenSeries = /* @__PURE__ */ new Set(), this.chartModel = new Yr(), this.layoutAxisKey = "";
 	}
@@ -7022,7 +7022,7 @@ var si = class extends j {
 				id: e.id,
 				x: s,
 				y: Ar(i.value, a, r),
-				color: Z(e.color, n)
+				color: Cr(e.color, n)
 			}] : [];
 		});
 		return T`
@@ -7079,7 +7079,7 @@ var si = class extends j {
                     <span class="tooltip-name">
                       <span
                         class="dot"
-                        style=${`background:${Z(e.color, n)}`}
+                        style=${`background:${Cr(e.color, n)}`}
                       ></span>
                       ${e.name}
                     </span>
@@ -7104,7 +7104,7 @@ var si = class extends j {
 customElements.define("ic-trend-chart", si);
 //#endregion
 //#region src/components/trend/trend-legend.ts
-var ci = class extends j {
+var ci = class extends M {
 	constructor(...e) {
 		super(...e), this.series = [], this.axes = [], this.hiddenSeries = /* @__PURE__ */ new Set();
 	}
@@ -7177,7 +7177,7 @@ var ci = class extends j {
           >
             <span
               class="dot"
-              style=${`background:${Z(e.color, t)}`}
+              style=${`background:${Cr(e.color, t)}`}
             ></span>
             ${e.name}${r ? ` · ${r}` : ""}
           </button>
@@ -7189,7 +7189,7 @@ var ci = class extends j {
 customElements.define("ic-trend-legend", ci);
 //#endregion
 //#region src/components/common/subpage-header.ts
-var li = class extends j {
+var li = class extends M {
 	constructor(...e) {
 		super(...e), this.title = "";
 	}
@@ -7260,9 +7260,9 @@ var li = class extends j {
 customElements.define("ic-subpage-header", li);
 //#endregion
 //#region src/components/trend/trend-settings-dialog.ts
-var ui = class extends j {
+var ui = class extends M {
 	constructor(...e) {
-		super(...e), this.open = !1, this.selectedEntity = "", this.draft = X({ entities: [] }), this.configuredIndex = 0, this.view = "list", this.entityPickerExpanded = !1, this.manuallyEditedNames = /* @__PURE__ */ new Set(), this.manuallyEditedUnits = /* @__PURE__ */ new Set();
+		super(...e), this.open = !1, this.selectedEntity = "", this.draft = Z({ entities: [] }), this.configuredIndex = 0, this.view = "list", this.entityPickerExpanded = !1, this.manuallyEditedNames = /* @__PURE__ */ new Set(), this.manuallyEditedUnits = /* @__PURE__ */ new Set();
 	}
 	static {
 		this.properties = {
@@ -7361,11 +7361,11 @@ var ui = class extends j {
     }
     .footer { display:flex; justify-content:flex-end; gap:10px; padding:14px 24px; }
     .delete-action { margin-inline-end:auto; }
-  `, M];
+  `, N];
 	}
 	willUpdate(e) {
 		if (e.has("open") && this.open || e.has("config") && !this.open) {
-			this.draft = X(this.config ?? { entities: [] });
+			this.draft = Z(this.config ?? { entities: [] });
 			let e = this.selectedEntity ? this.draft.entities.findIndex((e) => e.entity === this.selectedEntity) : -1;
 			this.configuredIndex = e >= 0 ? e : 0, this.view = e >= 0 ? "series" : "list", this.entityPickerExpanded = !1, this.manuallyEditedNames = new Set(this.draft.entities.flatMap((e, t) => {
 				let n = this.hass?.states[e.entity], r = String(n?.attributes.friendly_name ?? ""), i = e.name?.trim() ?? "";
@@ -7405,7 +7405,7 @@ var ui = class extends j {
 	}
 	emitChange() {
 		this.dispatchEvent(new CustomEvent("trend-settings-change", {
-			detail: { config: X(this.draft) },
+			detail: { config: Z(this.draft) },
 			bubbles: !0,
 			composed: !0
 		}));
@@ -7418,7 +7418,7 @@ var ui = class extends j {
 	}
 	save() {
 		this.dispatchEvent(new CustomEvent("trend-settings-save", {
-			detail: { config: X(this.draft) },
+			detail: { config: Z(this.draft) },
 			bubbles: !0,
 			composed: !0
 		}));
@@ -7454,7 +7454,7 @@ var ui = class extends j {
               <div class="entity-field-group"
                 @click=${(e) => e.stopPropagation()}>
                 <ic-field variant="selectable"
-                  .value=${L(e.entity, "readonlyField")}
+                  .value=${R(e.entity, "readonlyField")}
                   .rawValue=${e.entity}
                   aria-expanded=${this.entityPickerExpanded}
                   @field-activate=${() => {
@@ -7571,7 +7571,7 @@ var ui = class extends j {
 			this.configuredIndex = t, this.view = "series", this.requestUpdate();
 		}}>
                       <span class="series-label" title=${e.name ?? e.entity}>
-                        ${R(e.name ?? e.entity, { maxLength: I.readonlyField })}
+                        ${z(e.name ?? e.entity, { maxLength: L.readonlyField })}
                       </span>
                       <ha-icon icon="mdi:chevron-right"></ha-icon>
                     </button>
@@ -7683,9 +7683,9 @@ function _i(e, t) {
 function vi(e, t, n) {
 	return String(n?.trim() || e?.states[t]?.attributes.friendly_name || t);
 }
-var yi = class extends j {
+var yi = class extends M {
 	constructor(...e) {
-		super(...e), this.timeframe = "24H", this.status = "idle", this.errorMessage = "", this.series = [], this.axes = [], this.loadVersion = 0, this.settingsMenuOpen = !1, this.seriesSearch = "", this.settingsDialogOpen = !1, this.settingsDialogEntity = "", this.hiddenSeriesIds = /* @__PURE__ */ new Set(), this.configCoordinator = new pr(new mi()), this.configResolutionVersion = 0, this.configStorageId = "energy-trend";
+		super(...e), this.timeframe = "24H", this.status = "idle", this.errorMessage = "", this.series = [], this.axes = [], this.loadVersion = 0, this.settingsMenuOpen = !1, this.seriesSearch = "", this.settingsDialogOpen = !1, this.settingsDialogEntity = "", this.hiddenSeriesIds = /* @__PURE__ */ new Set(), this.configCoordinator = new fr(new mi()), this.configResolutionVersion = 0, this.configStorageId = "energy-trend";
 	}
 	static {
 		this.properties = {
@@ -7811,7 +7811,7 @@ var yi = class extends j {
 	}
 	setConfig(e) {
 		if (!e || !Array.isArray(e.entities)) throw Error("entities is required");
-		let t = X(e), n = ++this.configResolutionVersion;
+		let t = Z(e), n = ++this.configResolutionVersion;
 		this.configStorageId = this.getConfigStorageId(t), this.config = t, this.timeframe = this.config.timeframe ?? "24H", this._hass && this.loadHistory(), this.configCoordinator.resolve(this.configStorageId, t).then((e) => {
 			n === this.configResolutionVersion && (this.config = e, this.timeframe = e.timeframe ?? "24H", this.requestUpdate(), this._hass && this.loadHistory());
 		}).catch((e) => {
@@ -7835,9 +7835,9 @@ var yi = class extends j {
 		let e = ++this.loadVersion;
 		this.status = "loading", this.errorMessage = "", this.requestUpdate();
 		try {
-			let t = await _r(this._hass, this.config.entities.map((e) => e.entity), this.timeframe);
+			let t = await gr(this._hass, this.config.entities.map((e) => e.entity), this.timeframe);
 			if (e !== this.loadVersion) return;
-			let n = xr(t.entities, this.config.entities, this.config.category ?? "energy", this.getEntityMetadata());
+			let n = br(t.entities, this.config.entities, this.config.category ?? "energy", this.getEntityMetadata());
 			this.series = n.series, this.axes = n.axes, this.status = n.series.some((e) => e.points.length > 0) ? "ready" : "empty";
 		} catch (t) {
 			if (e !== this.loadVersion) return;
@@ -7861,7 +7861,7 @@ var yi = class extends j {
 		t.has(e.detail.seriesId) ? t.delete(e.detail.seriesId) : t.add(e.detail.seriesId), this.hiddenSeriesIds = t, this.requestUpdate();
 	}
 	commitTrendConfig(e) {
-		++this.configResolutionVersion, this.config = X(e), this.timeframe = this.config.timeframe ?? "24H";
+		++this.configResolutionVersion, this.config = Z(e), this.timeframe = this.config.timeframe ?? "24H";
 		let t = new Map(this.config.entities.map((e) => [e.entity, e]));
 		this.series = this.series.map((e) => {
 			let n = t.get(e.entity);
@@ -7933,7 +7933,7 @@ var yi = class extends j {
           <ic-action-menu class="trend-menu">
               <div class="menu-title">Displayed Series</div>
               ${this.config.entities.length ? this.config.entities.map((e) => {
-			let t = vi(this._hass, e.entity, e.name), n = R(t, { maxLength: I.compactMenu });
+			let t = vi(this._hass, e.entity, e.name), n = z(t, { maxLength: L.compactMenu });
 			return T`
                 <div class="series-manager-row ${e.enabled === !1 ? "hidden-series" : ""}">
                   <ic-menu-item
@@ -7954,11 +7954,11 @@ var yi = class extends j {
 			this.seriesSearch = e.detail.value, this.requestUpdate();
 		}}></ic-search-field>
               ${n.length ? n.map((e) => {
-			let t = vi(this._hass, e), n = R(t, { maxLength: I.compactMenu });
+			let t = vi(this._hass, e), n = z(t, { maxLength: L.compactMenu });
 			return T`
                 <ic-menu-item indicator="plus"
                   .rawLabel=${t}
-                  .secondaryLabel=${L(e, "compactMenu")}
+                  .secondaryLabel=${R(e, "compactMenu")}
                   .rawSecondaryLabel=${e}
                   @click=${() => this.addSeries(e)}>
                   ${n}
@@ -8028,7 +8028,7 @@ customElements.define("energy-trend-card", yi), window.customCards = [...window.
 //#region src/data/circuit-config.ts
 var bi = [];
 function xi(e, t) {
-	let n = P(e, t.entity), r = n.status === "valid" && n.value !== null ? mt(n.value, n.unit) : null, i = r?.family === "power", a = i ? r.value : n.value, o = F(i && r ? {
+	let n = F(e, t.entity), r = n.status === "valid" && n.value !== null ? pt(n.value, n.unit) : null, i = r?.family === "power", a = i ? r.value : n.value, o = I(i && r ? {
 		...n,
 		value: r.value,
 		unit: "W"
@@ -8187,7 +8187,7 @@ var Mi = class {
 		let t = await this.load() ?? [];
 		await this.save(t.filter((t) => t.id !== e));
 	}
-}, Ni = class extends j {
+}, Ni = class extends M {
 	static {
 		this.styles = h`
     :host {
@@ -8280,7 +8280,7 @@ var Mi = class {
 customElements.define("ic-circuit-add-card", Ni);
 //#endregion
 //#region src/components/circuit/circuit-card.ts
-var Pi = class extends j {
+var Pi = class extends M {
 	constructor(...e) {
 		super(...e), this.selected = !1;
 	}
@@ -8517,7 +8517,7 @@ function Li(e, t) {
 }
 //#endregion
 //#region src/components/common/info-panel.ts
-var Ri = class extends j {
+var Ri = class extends M {
 	constructor(...e) {
 		super(...e), this.items = [];
 	}
@@ -8559,7 +8559,7 @@ var zi = [
 	"mdi:washing-machine",
 	"mdi:power-plug",
 	"mdi:flash"
-], Bi = class extends j {
+], Bi = class extends M {
 	constructor(...e) {
 		super(...e), this.value = "", this.search = "";
 	}
@@ -8676,7 +8676,7 @@ var zi = [
 customElements.define("ic-icon-picker", Bi);
 //#endregion
 //#region src/components/circuit/circuit-settings-modal.ts
-var Vi = class extends j {
+var Vi = class extends M {
 	constructor(...e) {
 		super(...e), this.open = !1, this.mode = "edit", this.entityPickerExpanded = !1, this.iconPickerExpanded = !1, this.saving = !1, this.deleting = !1;
 	}
@@ -8728,7 +8728,7 @@ var Vi = class extends j {
       font-weight: 400;
       line-height: 1.3;
     }
-  `, M];
+  `, N];
 	}
 	willUpdate(e) {
 		this.circuit && (e.has("open") && this.open || !this.draft || this.draft.id !== this.circuit.id) && (this.draft = { ...this.circuit }, this.entityPickerExpanded = !1, this.iconPickerExpanded = !1, this.saving = !1, this.deleting = !1);
@@ -8774,7 +8774,7 @@ var Vi = class extends j {
 		}}
       >
         <span slot="secondary" title=${e || "No entity selected"}>
-          ${e ? L(e, "readonlyField") : "No entity selected"}
+          ${e ? R(e, "readonlyField") : "No entity selected"}
         </span>
         <span slot="trailing" class="entity-state">${i}</span>
       </ic-field>
@@ -8951,7 +8951,7 @@ function Hi() {
 		Math.random().toString(36).slice(2, 10)
 	].join("-");
 }
-var Ui = class extends j {
+var Ui = class extends M {
 	constructor(...e) {
 		super(...e), this.config = {
 			title: "Active Circuits",
@@ -8980,7 +8980,7 @@ var Ui = class extends j {
 		return { columns: "full" };
 	}
 	static {
-		this.styles = [ir, h`
+		this.styles = [rr, h`
     :host {
       display: block;
       width: 100%;
@@ -9460,7 +9460,7 @@ function Ji(e, t, n) {
 }
 //#endregion
 //#region src/components/flow/energy-flow-detail-modal.ts
-var Yi = class extends j {
+var Yi = class extends M {
 	constructor(...e) {
 		super(...e), this.open = !1;
 	}
@@ -9480,7 +9480,7 @@ var Yi = class extends j {
     .metric { padding:12px; border:1px solid var(--divider-color); border-radius:var(--ic-radius-control); }
     .metric span { color:var(--secondary-text-color); font-size:11px; }
     .metric strong { display:block; margin-top:5px; }
-  `, M];
+  `, N];
 	}
 	close() {
 		this.dispatchEvent(new CustomEvent("energy-flow-detail-close", {
@@ -9494,7 +9494,7 @@ var Yi = class extends j {
 	render() {
 		let e = this.node ?? this.lastNode;
 		if (!e) return null;
-		let t = F({
+		let t = I({
 			entityId: e.id,
 			name: e.name,
 			status: "valid",
@@ -9521,7 +9521,7 @@ var Yi = class extends j {
 customElements.define("ic-energy-flow-detail-modal", Yi);
 //#endregion
 //#region src/components/flow/energy-flow-edge-layer.ts
-var Xi = class extends j {
+var Xi = class extends M {
 	constructor(...e) {
 		super(...e), this.paths = [], this.width = 1, this.height = 1;
 	}
@@ -9561,7 +9561,7 @@ var Xi = class extends j {
 customElements.define("ic-energy-flow-edge-layer", Xi);
 //#endregion
 //#region src/components/flow/energy-flow-node.ts
-var Zi = class extends j {
+var Zi = class extends M {
 	static {
 		this.properties = { node: { attribute: !1 } };
 	}
@@ -9623,7 +9623,7 @@ var Zi = class extends j {
 	render() {
 		let e = this.node;
 		if (!e) return null;
-		let t = F({
+		let t = I({
 			entityId: e.id,
 			name: e.name,
 			status: "valid",
@@ -9648,7 +9648,7 @@ var Zi = class extends j {
 customElements.define("ic-energy-flow-node", Zi);
 //#endregion
 //#region src/components/energy-flow-diagram.ts
-var Qi = class extends j {
+var Qi = class extends M {
 	constructor(...e) {
 		super(...e), this.config = {
 			title: "Energy Flow",
@@ -9818,7 +9818,7 @@ var Qi = class extends j {
 customElements.define("energy-flow-diagram", Qi);
 //#endregion
 //#region src/components/energy-theme-selector.ts
-var $i = class extends j {
+var $i = class extends M {
 	constructor(...e) {
 		super(...e), this.config = {}, this.themeChanged = () => this.requestUpdate();
 	}
@@ -9894,7 +9894,7 @@ customElements.define("energy-theme-selector", $i), window.customCards = [...win
 }];
 //#endregion
 //#region src/components/energy-settings-card.ts
-var ea = class extends j {
+var ea = class extends M {
 	constructor(...e) {
 		super(...e), this.config = {};
 	}
@@ -10100,14 +10100,14 @@ function da(e) {
 	}
 }
 function fa(e, t) {
-	let n = e?.states[t.device_entity], r = Q(e, t.device_entity), i = !!r, a = aa(e, t.device_entity), o = t.power_entity ? F(P(e, t.power_entity), {
+	let n = e?.states[t.device_entity], r = Q(e, t.device_entity), i = !!r, a = aa(e, t.device_entity), o = t.power_entity ? I(F(e, t.power_entity), {
 		autoScale: !0,
 		decimals: 1,
 		trimTrailingZeros: !0
-	}) : void 0, s = t.temperature_entity ? F(P(e, t.temperature_entity), {
+	}) : void 0, s = t.temperature_entity ? I(F(e, t.temperature_entity), {
 		decimals: 1,
 		trimTrailingZeros: !0
-	}) : void 0, c = t.target_temperature_entity ? F(P(e, t.target_temperature_entity), {
+	}) : void 0, c = t.target_temperature_entity ? I(F(e, t.target_temperature_entity), {
 		decimals: 1,
 		trimTrailingZeros: !0
 	}) : void 0, l = Q(e, t.last_action_entity), u = ra(Q(e, t.status_entity)), d = Q(e, t.strategy_entity), f = Q(e, t.target_time_entity), p = Q(e, t.estimated_finish_entity);
@@ -10148,7 +10148,7 @@ var pa = [
 	"target_time_entity",
 	"manual_override_entity",
 	"device_entity"
-], ma = class extends j {
+], ma = class extends M {
 	constructor(...e) {
 		super(...e), this.actionError = "";
 	}
@@ -10751,7 +10751,7 @@ var ha = [
 	title: "Pet energy summary",
 	description: "This month your pets used 18.4 kWh.",
 	icon: "mdi:paw"
-}, $ = class extends j {
+}, $ = class extends M {
 	constructor(...e) {
 		super(...e), this.sceneConfig = {};
 	}
@@ -10761,7 +10761,7 @@ var ha = [
 	getGridOptions() {
 		return { columns: "full" };
 	}
-}, Aa = class extends j {
+}, Aa = class extends M {
 	constructor(...e) {
 		super(...e), this.title = "", this.subtitle = "", this.menuOpen = !1;
 	}
@@ -10835,7 +10835,7 @@ var ha = [
 customElements.define("ic-scene-page-container", Aa);
 //#endregion
 //#region src/components/scenes/common/scene-hero-card.ts
-var ja = class extends j {
+var ja = class extends M {
 	constructor(...e) {
 		super(...e), this.title = "", this.icon = "mdi:home-lightning-bolt", this.details = [];
 	}
@@ -10907,7 +10907,7 @@ var ja = class extends j {
 customElements.define("ic-scene-hero-card", ja);
 //#endregion
 //#region src/components/scenes/common/scene-metric-grid.ts
-var Ma = class extends j {
+var Ma = class extends M {
 	constructor(...e) {
 		super(...e), this.metrics = [];
 	}
@@ -10945,7 +10945,7 @@ var Ma = class extends j {
 customElements.define("ic-scene-metric-grid", Ma);
 //#endregion
 //#region src/components/scenes/common/scene-status-card.ts
-var Na = class extends j {
+var Na = class extends M {
 	constructor(...e) {
 		super(...e), this.title = "", this.description = "", this.metrics = [];
 	}
@@ -10984,7 +10984,7 @@ var Na = class extends j {
 customElements.define("ic-scene-status-card", Na);
 //#endregion
 //#region src/components/scenes/common/scene-history-list.ts
-var Pa = class extends j {
+var Pa = class extends M {
 	constructor(...e) {
 		super(...e), this.title = "History", this.headings = [], this.entries = [];
 	}
@@ -11031,7 +11031,7 @@ var Pa = class extends j {
 customElements.define("ic-scene-history-list", Pa);
 //#endregion
 //#region src/components/scenes/common/scene-insight-card.ts
-var Fa = class extends j {
+var Fa = class extends M {
 	static {
 		this.properties = { insight: { attribute: !1 } };
 	}
@@ -11074,7 +11074,7 @@ function La(e) {
 	})), a = ni(i);
 	return a.length ? `M ${i[0].x} ${i[0].y} ${a.map((e) => `C ${e.control1.x} ${e.control1.y}, ${e.control2.x} ${e.control2.y}, ${e.end.x} ${e.end.y}`).join(" ")}` : `M ${i[0].x} ${i[0].y}`;
 }
-var Ra = class extends j {
+var Ra = class extends M {
 	constructor(...e) {
 		super(...e), this.title = "", this.subtitle = "", this.series = [];
 	}
@@ -11137,7 +11137,7 @@ var Ra = class extends j {
 customElements.define("ic-scene-chart-card", Ra);
 //#endregion
 //#region src/components/scenes/ev/ev-charging-timeline-card.ts
-var za = class extends j {
+var za = class extends M {
 	constructor(...e) {
 		super(...e), this.series = [];
 	}
@@ -11208,7 +11208,7 @@ var Ba = class extends $ {
 customElements.define("energy-ev-charging-scene", Ba);
 //#endregion
 //#region src/components/scenes/common/scene-flow-card.ts
-var Va = class extends j {
+var Va = class extends M {
 	constructor(...e) {
 		super(...e), this.title = "Energy Flow", this.nodes = [];
 	}
@@ -11625,7 +11625,7 @@ function Ka() {
 }
 //#endregion
 //#region src/components/panel/interactive-energy-panel.ts
-var qa = class extends j {
+var qa = class extends M {
 	constructor(...e) {
 		super(...e), this.narrow = !1, this.config = {}, this.activeTab = "overview", this.activeScene = "ev", this.themeListener = () => this.requestUpdate();
 	}
@@ -12218,7 +12218,13 @@ var qa = class extends j {
     `;
 	}
 };
-customElements.define("interactive-energy-panel", qa), customElements.get("interactive-card-panel") || customElements.define("interactive-card-panel", class extends qa {});
+for (let e of [
+	"interactive-energy-panel",
+	"ha-panel-interactive-energy-panel",
+	"ha-panel-interactive_energy_panel",
+	"interactive-card-panel",
+	"ha-panel-interactive-card-panel"
+]) customElements.get(e) || customElements.define(e, class extends qa {});
 //#endregion
 //#region src/config/card-registry.ts
 var Ja = Object.freeze([
